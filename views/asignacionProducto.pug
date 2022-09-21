@@ -1,0 +1,63 @@
+extends layout 
+block contenido 
+    div 
+        h1.text-center Asignacion de Producto 
+        div 
+            form(role='form' method='POST' action=`/asignar-producto` data-toggle= "validator")
+                if(asignarProductoAgri.length)
+                    table.table.tabled-bordered.table-striped.text-center.mt-2(id='ver_tablas_producto') Informacion Producto 
+                         thead 
+                            tr.bg-success.text-white 
+                                th(scope='col')
+                                    | nombre del producto 
+                                th(scope='col')
+                                    | tipo del producto
+                                th(scope='col')
+                                    | descripcion del producto 
+                                th(scope='col')
+                                    | cantidad 
+                                th(scope='col')
+                                    | Opcion 
+                            tbody 
+                                each producto in asignarProductoAgri
+                                    tr 
+                                        .form-group     
+                                            td(id=condnumero)
+                                                input#name.form-control.text-center(type="text", name="idPro" value=`${ producto.cond_numero }`)
+                                            td(id=condnombre)
+                                                input#name.form-control.text-center(type="text", name="nomPro" value=`${ producto.cond_nombre }`) 
+                                            td(id=condtipo)
+                                                input#name.form-control.text-center(type="text", name="tipPro" value=`${ producto.cond_tipo }`) 
+                                            td(id=conddescripcion)
+                                                input#name.form-control.text-center(type="text", name="desPro" value=`${ producto.cond_descripcion }`) 
+                                            td(id=condcantidad)
+                                                input#name.form-control.text-center(type="text", name="canPro" value=`${ producto.cond_cantidad }`)
+
+                    table.table.tabled-bordered.table-striped.text-center.mt-2(id='ver_tablas_producto') Informacion Agricultores  
+                        thead  
+                            tr.bg-success.text-white
+                                th(scope='col')
+                                | No de documento 
+                                th(scope='col')
+                                | nombre
+                                th(scope='col')
+                                | fecha nacimiento 
+                                th(scope='col')
+                                | Sexo 
+                                th(scope='col')
+                                | Direccion
+                                th(scope='col')
+                                | Opcion 
+                        tbody    
+                            each agricultor in agricultores 
+                                tr 
+                                    td(id=condnumero) 
+                                        input#name.form-control.text-center(type="text" name='idagro' value=`${agricultor.cond_numero}`)  
+
+                                    td=agricultor.cond_documento
+                                    td=agricultor.cond_nombre
+                                    td=agricultor.cond_fecha_nacimiento 
+                                    td=agricultor.cond_sexo
+                                    td=agricultor.cond_direccion
+                                    td
+                                        button.btn.btn-primary(type="submit", name="asignar") Asignar             
